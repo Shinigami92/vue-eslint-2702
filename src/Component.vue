@@ -1,24 +1,30 @@
 <script lang="ts">
-export type ComponentProps<
-  TValueLoooooooooooooooooooooooooooooooooog = string
-> = {
-  value?: TValueLoooooooooooooooooooooooooooooooooog;
-};
+export type WuiFilterEditorListOption<
+  TValue = string,
+  TValueKey extends string = "value"
+> = Record<TValueKey, TValue> & Partial<Record<string, unknown>>;
+
+export interface WuiFilterEditorListProps<
+  TValue = string,
+  TValueKey extends string = "value"
+> {
+  valueField?: TValueKey;
+  options: Array<WuiFilterEditorListOption<TValue, TValueKey>>;
+}
 </script>
 
 <script
   setup
   lang="ts"
-  generic="TValueLoooooooooooooooooooooooooooooooooog = string"
+  generic="TValue = string, TValueKey extends string = 'value'"
 >
 const props = withDefaults(
-  defineProps<ComponentProps<TValueLoooooooooooooooooooooooooooooooooog>>(),
+  defineProps<WuiFilterEditorListProps<TValue, TValueKey>>(),
   {
-    value: "default",
+    // @ts-expect-error: default is compatible with generic default
+    valueField: "value",
   }
 );
-</script>
 
-<template>
-  <span>{{ props.value }}</span>
-</template>
+console.log(props);
+</script>
