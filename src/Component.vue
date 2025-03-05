@@ -1,13 +1,22 @@
 <script lang="ts">
-export type ComponentProps<TValue = string> = {
-  value?: TValue;
+export type ComponentProps<
+  TValueLoooooooooooooooooooooooooooooooooog = string
+> = {
+  value?: TValueLoooooooooooooooooooooooooooooooooog;
 };
 </script>
 
-<script setup lang="ts">
-const props = withDefaults(defineProps<ComponentProps>(), {
-  value: "default",
-});
+<script
+  setup
+  lang="ts"
+  generic="TValueLoooooooooooooooooooooooooooooooooog = string"
+>
+const props = withDefaults(
+  defineProps<ComponentProps<TValueLoooooooooooooooooooooooooooooooooog>>(),
+  {
+    value: "default",
+  }
+);
 </script>
 
 <template>
